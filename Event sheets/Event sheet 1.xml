@@ -1,0 +1,136 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2eventsheet>
+    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
+    <name>Event sheet 1</name>
+    <events>
+        <variable constant="0" name="gameOver" sid="626258444602295" static="0" type="number">0</variable>
+        <variable constant="0" name="lives" sid="588612847874854" static="0" type="number">3</variable>
+        <variable constant="0" name="score" sid="337719373482410" static="0" type="number">0</variable>
+        <event-block sid="756969458440564">
+            <conditions>
+                <condition id="-6" name="Every X seconds" sid="949624497908447" type="System">
+                    <param id="0" name="Interval (seconds)">1.0</param>
+                </condition>
+                <condition id="-16" name="Pick random instance" sid="305861854074143" type="System">
+                    <param id="0" name="Object">spawner</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-3" name="Create object" sid="849765255646564" type="System">
+                    <param id="0" name="Object to create">clay</param>
+                    <param id="1" name="Layer">1</param>
+                    <param id="2" name="X">spawner.X</param>
+                    <param id="3" name="Y">spawner.Y</param>
+                </action>
+                <action behavior="Bullet" id="0" name="Set speed" sid="820427267513089" type="clay">
+                    <param id="0" name="Speed">choose(200,400,600)</param>
+                </action>
+                <action id="9" name="Set scale" sid="563077518546086" type="clay">
+                    <param id="0" name="Scale">choose(1.5,2,2.5)</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="261943189229749">
+            <conditions>
+                <condition id="3" name="On touched object" sid="332641107874325" type="Touch">
+                    <param id="0" name="Object">clay</param>
+                </condition>
+                <condition id="-14" name="Compare variable" sid="527771531530803" type="System">
+                    <param id="0" name="Variable">gameOver</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">0</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="6" name="Set speed" sid="708394701234668" type="clay">
+                    <param id="0" name="Speed">12</param>
+                </action>
+                <action behavior="Bullet" id="5" name="Set enabled" sid="328342516949026" type="clay">
+                    <param id="0" name="State">0</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="729258435641735">
+            <conditions>
+                <condition id="5" name="On any finished" sid="791347047139761" type="clay" />
+            </conditions>
+            <actions>
+                <action id="-9" name="Destroy" sid="998567771486774" type="clay" />
+                <action id="-10" name="Add to" sid="128307055487987" type="System">
+                    <param id="0" name="Variable">score</param>
+                    <param id="1" name="Value">10</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="492763635243707">
+            <conditions>
+                <condition id="-1" name="Every tick" sid="274261300168918" type="System" />
+            </conditions>
+            <actions>
+                <action id="0" name="Set text" sid="401682729031114" type="Lives">
+                    <param id="0" name="Text">&quot;Live: &quot; &amp; lives</param>
+                </action>
+                <action id="0" name="Set text" sid="134122719716051" type="Score">
+                    <param id="0" name="Text">&quot;Score: &quot; &amp; score</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="343132703140764">
+            <conditions>
+                <condition id="-4" name="Is outside layout" sid="476731079003606" type="clay" />
+                <condition id="-14" name="Compare variable" sid="929140125261098" type="System">
+                    <param id="0" name="Variable">gameOver</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">0</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-11" name="Subtract from" sid="621600499308628" type="System">
+                    <param id="0" name="Variable">lives</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+                <action id="-9" name="Destroy" sid="308350487923726" type="clay" />
+            </actions>
+        </event-block>
+        <event-block sid="349032290255293">
+            <conditions>
+                <condition id="-14" name="Compare variable" sid="198470550190921" type="System">
+                    <param id="0" name="Variable">lives</param>
+                    <param id="1" name="Comparison">3</param>
+                    <param id="2" name="Value">0</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" sid="183366928367695" type="System">
+                    <param id="0" name="Variable">gameOver</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="439018913107472">
+            <conditions>
+                <condition id="-14" name="Compare variable" sid="709958558580914" type="System">
+                    <param id="0" name="Variable">gameOver</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">1</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-15" name="Set visible" sid="124104496981602" type="Lives">
+                    <param id="0" name="Visibility">0</param>
+                </action>
+                <action id="-15" name="Set visible" sid="285315207420941" type="Score">
+                    <param id="0" name="Visibility">0</param>
+                </action>
+                <action id="-15" name="Set visible" sid="975766369496770" type="GameOver">
+                    <param id="0" name="Visibility">1</param>
+                </action>
+                <action id="-16" name="Wait" sid="386493944465475" type="System">
+                    <param id="0" name="Seconds">2</param>
+                </action>
+                <action id="-26" name="Restart layout" sid="701119785468063" type="System" />
+                <action id="-21" name="Reset global variables" sid="665615004816669" type="System" />
+            </actions>
+        </event-block>
+    </events>
+</c2eventsheet>
